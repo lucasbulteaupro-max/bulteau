@@ -1,32 +1,27 @@
 /* ============================================================
    Bulteau Consulting & Support — Script
-   Header sticky · menu mobile · slideshow hero · reveal
    ============================================================ */
-
 (() => {
   'use strict';
 
-  // ── Année dynamique dans le footer ──
-  const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  // Année footer
+  const yr = document.getElementById('year');
+  if (yr) yr.textContent = new Date().getFullYear();
 
-  // ── Header : ajout de la classe scrolled ──
+  // Header scroll
   const header = document.getElementById('siteHeader');
-  const onScroll = () => {
-    if (!header) return;
-    header.classList.toggle('scrolled', window.scrollY > 20);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  window.addEventListener('scroll', () => {
+    if (header) header.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive:true });
 
-  // ── Menu mobile ──
+  // Menu mobile
   const toggle = document.getElementById('navToggle');
-  const nav = document.querySelector('.site-nav');
+  const nav    = document.querySelector('.site-nav');
   if (toggle && nav) {
-    const closeNav = () => {
+    const close = () => {
       nav.classList.remove('mobile-open');
       toggle.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-expanded','false');
       document.body.style.overflow = '';
     };
     toggle.addEventListener('click', () => {
@@ -35,80 +30,58 @@
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       document.body.style.overflow = open ? 'hidden' : '';
     });
-    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeNav));
+    nav.querySelectorAll('a').forEach(l => l.addEventListener('click', close));
   }
 
-  // ── Reveal on scroll ──
+  // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('in'), i * 80);
-          io.unobserve(entry.target);
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('in'), i * 100);
+          io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold:0.08, rootMargin:'0px 0px -30px 0px' });
     reveals.forEach(el => io.observe(el));
   } else {
     reveals.forEach(el => el.classList.add('in'));
   }
 
-  // ── Hero slideshow ──
-  const slides = document.querySelectorAll('.hero-slideshow .slide');
-  const prevBtn = document.getElementById('prevSlide');
-  const nextBtn = document.getElementById('nextSlide');
-  const currentEl = document.getElementById('currentSlide');
-  const totalEl = document.getElementById('totalSlides');
+  // ── Slider portfolio ──
+  const slides   = document.querySelectorAll('.slider .slide');
+  const prevBtn  = document.getElementById('prevSlide');
+  const nextBtn  = document.getElementById('nextSlide');
+  const countEl  = document.getElementById('ctrlCount');
+  const fillEl   = document.getElementById('ctrlFill');
+  const total    = slides.length;
+  let current    = 0;
 
-  if (slides.length > 0) {
-    let index = 0;
-    const total = slides.length;
-    if (totalEl) totalEl.textContent = String(total).padStart(2, '0');
+  function goTo(i) {
+    slides[current].classList.remove('active');
+    current = (i + total) % total;
+    slides[current].classList.add('active');
+    if (countEl) countEl.textContent =
+      String(current + 1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+    if (fillEl) fillEl.style.width = ((current + 1) / total * 100) + '%';
+  }
 
-    const goTo = (i) => {
-      index = (i + total) % total;
-      slides.forEach((slide, idx) => slide.classList.toggle('is-active', idx === index));
-      if (currentEl) currentEl.textContent = String(index + 1).padStart(2, '0');
-    };
+  if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
 
-    if (prevBtn) prevBtn.addEventListener('click', () => {
-      goTo(index - 1);
-      restartAutoplay();
-    });
-    if (nextBtn) nextBtn.addEventListener('click', () => {
-      goTo(index + 1);
-      restartAutoplay();
-    });
-
-    // Autoplay (pause quand l'onglet est caché)
-    let autoplay;
-    const startAutoplay = () => {
-      autoplay = setInterval(() => goTo(index + 1), 6000);
-    };
-    const restartAutoplay = () => {
-      clearInterval(autoplay);
-      startAutoplay();
-    };
-    startAutoplay();
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) clearInterval(autoplay);
-      else startAutoplay();
+  // Swipe mobile
+  const sliderEl = document.getElementById('slider');
+  if (sliderEl) {
+    let sx = 0;
+    sliderEl.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive:true });
+    sliderEl.addEventListener('touchend', e => {
+      const diff = sx - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
     });
   }
 
-  // ── Vidéo placeholder : indication pour l'utilisateur ──
-  // Quand le vrai <video> ou <iframe> sera inséré dans l'HTML, ce code n'aura aucun effet.
-  const videoPlaceholder = document.querySelector('.video-placeholder');
-  if (videoPlaceholder) {
-    const handleClick = () => {
-      // Message informatif en attendant l'intégration de la vraie vidéo
-      console.info('Vidéo à intégrer. Voir index.html, section #video.');
-    };
-    videoPlaceholder.addEventListener('click', handleClick);
-    videoPlaceholder.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(); }
-    });
-  }
+  // Init barre
+  if (fillEl && total) fillEl.style.width = (1 / total * 100) + '%';
+
 })();
