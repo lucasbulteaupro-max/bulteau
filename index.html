@@ -5,61 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bulteau Consulting &amp; Support — Expertise industrielle</title>
   <meta name="description" content="Bulteau Consulting &amp; Support accompagne les projets de développement industriel. Portfolio, lignes de production, supervision de chantiers." />
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/logo.png" />
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Manrope:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
   <!-- ── Header ── -->
   <header class="site-header" id="siteHeader">
-    <div class="container nav-wrap">
-      <a href="#accueil" class="brand" aria-label="Bulteau Consulting — accueil">
+    <div class="nav-wrap">
+      <a href="#hero" class="brand" aria-label="Bulteau Consulting — accueil">
         <img src="assets/logo.png" alt="Bulteau Consulting &amp; Support" class="brand-logo" />
         <span class="brand-text">
           <span class="brand-main">Bulteau Consulting</span>
-          <span class="brand-sub">&amp; Support</span> 
+          <span class="brand-sub">&amp; Support</span>
         </span>
       </a>
-
       <nav class="site-nav" aria-label="Navigation principale">
-        <a href="#projets">Projets</a>
-        <a href="#video">Vidéo</a>
-        <a href="#apropos">À propos</a>
+        <a href="#hero">Accueil</a>
+        <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
         <a href="mailto:contact@bulteau-consulting.fr" class="nav-cta">Nous écrire</a>
       </nav>
-
       <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <!-- ── Hero ── -->
-  <section class="hero" id="accueil">
-    <!-- Slideshow en arrière-plan -->
-    <div class="hero-slideshow" aria-hidden="true">
-      <div class="slide is-active" style="background-image: url('assets/hero-industrial.jpg');"></div>
-      <div class="slide" style="background: linear-gradient(135deg, #2E3A52 0%, #24242E 100%);">
-        <div class="slide-placeholder">VISUEL PROJET 02</div>
-      </div>
-      <div class="slide" style="background: linear-gradient(135deg, #3A4A3E 0%, #24242E 100%);">
-        <div class="slide-placeholder">VISUEL PROJET 03</div>
-      </div>
-    </div>
+  <!-- ── 1. HERO — Conseil & Support + À propos côte à côte ── -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" style="background-image: url('assets/hero-industrial.jpg');"></div>
     <div class="hero-overlay"></div>
 
     <div class="container hero-content">
+
+      <!-- Gauche : texte Conseil & Support -->
       <div class="hero-text reveal">
         <p class="eyebrow light">
           <span class="dot red"></span>
@@ -77,237 +60,200 @@
           éprouvées sur le terrain.
         </p>
         <div class="cta-row">
-          <a href="#projets" class="btn btn-primary">Voir les projets</a>
-          <a href="#video" class="btn btn-ghost light">Regarder la vidéo <span aria-hidden="true">→</span></a>
+          <a href="#portfolio" class="btn btn-primary">Voir le portfolio</a>
+          <a href="#contact" class="btn btn-ghost light">Nous contacter <span aria-hidden="true">→</span></a>
         </div>
       </div>
 
-      <div class="hero-controls">
-        <button class="slide-btn" id="prevSlide" aria-label="Projet précédent">
+      <!-- Droite : à propos / portrait -->
+      <div class="hero-about reveal">
+        <div class="hero-portrait-frame">
+          <img src="assets/ghislain.jpg" alt="Ghislain Bulteau" />
+        </div>
+        <div class="hero-about-info">
+          <p class="hero-about-name">Ghislain Bulteau</p>
+          <p class="hero-about-role">Fondateur &amp; Consultant industriel</p>
+          <div class="hero-about-facts">
+            <div class="hero-fact">
+              <span class="hero-fact-num" style="color:#D64541;">20+</span>
+              <span class="hero-fact-label">ans d'expérience</span>
+            </div>
+            <div class="hero-fact">
+              <span class="hero-fact-num" style="color:#E5B64A;">40+</span>
+              <span class="hero-fact-label">projets livrés</span>
+            </div>
+            <div class="hero-fact">
+              <span class="hero-fact-num" style="color:#4FAE6C;">CNAM</span>
+              <span class="hero-fact-label">ingénieur</span>
+            </div>
+          </div>
+          <a href="https://www.linkedin.com/in/ghislain-bulteau/" target="_blank" rel="noopener" class="hero-linkedin">
+            LinkedIn ↗
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 2. PORTFOLIO ── -->
+  <section class="portfolio" id="portfolio">
+
+    <div class="portfolio-header container reveal">
+      <p class="eyebrow"><span class="dot yellow"></span> Portfolio</p>
+      <h2 class="display">
+        Des chantiers livrés,<br />
+        <em>du concept à la production.</em>
+      </h2>
+    </div>
+
+    <div class="portfolio-slider">
+      <div class="portfolio-slides" id="portfolioSlides">
+
+        <!-- Chantier 01 -->
+        <div class="portfolio-slide is-active">
+          <div class="portfolio-visual" style="background-image: url('assets/hero-industrial.jpg');"></div>
+          <div class="portfolio-overlay"></div>
+          <div class="portfolio-caption">
+            <div class="portfolio-caption-inner">
+              <span class="portfolio-num">01</span>
+              <div class="portfolio-info">
+                <h3 class="portfolio-client">Nom du client</h3>
+                <div class="portfolio-meta">
+                  <span class="portfolio-tag">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="6" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M7 13C7 13 2 9.5 2 6C2 3.24 4.24 1 7 1C9.76 1 12 3.24 12 6C12 9.5 7 13 7 13Z" stroke="currentColor" stroke-width="1.2"/></svg>
+                    Lille, France
+                  </span>
+                  <span class="portfolio-tag">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 6H13" stroke="currentColor" stroke-width="1.2"/><path d="M4 1V4M10 1V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                    2024
+                  </span>
+                </div>
+              </div>
+              <div class="portfolio-logo-wrap">
+                <div class="portfolio-logo">
+                  <span class="portfolio-logo-placeholder">LOGO<br/>CLIENT</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chantier 02 -->
+        <div class="portfolio-slide">
+          <div class="portfolio-visual" style="background: linear-gradient(135deg, #2E3A52, #1A2535);"></div>
+          <div class="portfolio-overlay"></div>
+          <div class="portfolio-caption">
+            <div class="portfolio-caption-inner">
+              <span class="portfolio-num">02</span>
+              <div class="portfolio-info">
+                <h3 class="portfolio-client">Nom du client</h3>
+                <div class="portfolio-meta">
+                  <span class="portfolio-tag">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="6" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M7 13C7 13 2 9.5 2 6C2 3.24 4.24 1 7 1C9.76 1 12 3.24 12 6C12 9.5 7 13 7 13Z" stroke="currentColor" stroke-width="1.2"/></svg>
+                    Lyon, France
+                  </span>
+                  <span class="portfolio-tag">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 6H13" stroke="currentColor" stroke-width="1.2"/><path d="M4 1V4M10 1V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                    2023
+                  </span>
+                </div>
+              </div>
+              <div class="portfolio-logo-wrap">
+                <div class="portfolio-logo">
+                  <span class="portfolio-logo-placeholder">LOGO<br/>CLIENT</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chantier 03 -->
+        <div class="portfolio-slide">
+          <div class="portfolio-visual" style="background: linear-gradient(135deg, #3A4A3E, #1E2A22);"></div>
+          <div class="portfolio-overlay"></div>
+          <div class="portfolio-caption">
+            <div class="portfolio-caption-inner">
+              <span class="portfolio-num">03</span>
+              <div class="portfolio-info">
+                <h3 class="portfolio-client">Nom du client</h3>
+                <div class="portfolio-meta">
+                  <span class="portfolio-tag">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="6" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M7 13C7 13 2 9.5 2 6C2 3.24 4.24 1 7 1C9.76 1 12 3.24 12 6C12 9.5 7 13 7 13Z" stroke="currentColor" stroke-width="1.2"/></svg>
+                    Nantes, France
+                  </span>
+                  <span class="portfolio-tag">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 6H13" stroke="currentColor" stroke-width="1.2"/><path d="M4 1V4M10 1V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                    2023
+                  </span>
+                </div>
+              </div>
+              <div class="portfolio-logo-wrap">
+                <div class="portfolio-logo">
+                  <span class="portfolio-logo-placeholder">LOGO<br/>CLIENT</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chantier 04 -->
+        <div class="portfolio-slide">
+          <div class="portfolio-visual" style="background: linear-gradient(135deg, #4A3A2E, #2A1E18);"></div>
+          <div class="portfolio-overlay"></div>
+          <div class="portfolio-caption">
+            <div class="portfolio-caption-inner">
+              <span class="portfolio-num">04</span>
+              <div class="portfolio-info">
+                <h3 class="portfolio-client">Nom du client</h3>
+                <div class="portfolio-meta">
+                  <span class="portfolio-tag">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="6" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M7 13C7 13 2 9.5 2 6C2 3.24 4.24 1 7 1C9.76 1 12 3.24 12 6C12 9.5 7 13 7 13Z" stroke="currentColor" stroke-width="1.2"/></svg>
+                    Paris, France
+                  </span>
+                  <span class="portfolio-tag">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 6H13" stroke="currentColor" stroke-width="1.2"/><path d="M4 1V4M10 1V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                    2022
+                  </span>
+                </div>
+              </div>
+              <div class="portfolio-logo-wrap">
+                <div class="portfolio-logo">
+                  <span class="portfolio-logo-placeholder">LOGO<br/>CLIENT</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="portfolio-controls">
+        <button class="portfolio-btn" id="prevPortfolio" aria-label="Chantier précédent">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </button>
-        <div class="slide-counter">
-          <span id="currentSlide">01</span>
-          <span class="slide-sep">/</span>
-          <span id="totalSlides">03</span>
+        <div class="portfolio-progress">
+          <div class="portfolio-progress-bar" id="portfolioProgressBar"></div>
         </div>
-        <button class="slide-btn" id="nextSlide" aria-label="Projet suivant">
+        <div class="portfolio-counter">
+          <span id="currentPortfolio">01</span>
+          <span class="portfolio-sep">/</span>
+          <span id="totalPortfolio">04</span>
+        </div>
+        <button class="portfolio-btn" id="nextPortfolio" aria-label="Chantier suivant">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </button>
       </div>
     </div>
 
-    <div class="hero-scroll" aria-hidden="true">
-      <span>Scroll</span>
-      <span class="line"></span>
+    <div class="portfolio-note container reveal">
+      <p>D'autres références sont disponibles sur demande, selon les accords de confidentialité.</p>
+      <a href="#contact" class="btn btn-ghost">Nous contacter <span aria-hidden="true">→</span></a>
     </div>
+
   </section>
 
-  <!-- ── Vidéo timelapse ── -->
-  <section class="video-section section" id="video">
-    <div class="container">
-      <header class="section-head reveal">
-        <p class="eyebrow"><span class="dot red"></span> Timelapse</p>
-        <h2 class="display">
-          Une ligne de production,<br />
-          <em>construite sous supervision.</em>
-        </h2>
-        <p class="section-sub">
-          De la première étude au premier produit fini : plusieurs mois de chantier condensés en
-          quelques minutes. Un aperçu concret de ce que nous pilotons.
-        </p>
-      </header>
-
-      <div class="video-wrap reveal">
-        <!--
-          POUR INSÉRER LA VRAIE VIDÉO
-          — Fichier local : remplacer .video-placeholder par
-              <video controls poster="assets/hero-industrial.jpg">
-                <source src="assets/timelapse.mp4" type="video/mp4" />
-              </video>
-          — YouTube : remplacer par
-              <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
-        -->
-        <div class="video-placeholder" role="button" tabindex="0" aria-label="Lecture de la vidéo">
-          <div class="video-poster" style="background-image: url('assets/hero-industrial.jpg');"></div>
-          <div class="video-play">
-            <svg width="28" height="32" viewBox="0 0 28 32" fill="none">
-              <path d="M26 14.27C27.33 15.04 27.33 16.96 26 17.73L4 30.43C2.67 31.2 1 30.24 1 28.7V3.3C1 1.76 2.67 0.8 4 1.57L26 14.27Z" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </div>
-          <div class="video-caption">
-            <span class="video-label">Chantier · 2024</span>
-            <h3>Ligne d'assemblage · Industrie lourde</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Projets ── -->
-  <section class="projects section" id="projets">
-    <div class="container">
-      <header class="section-head reveal">
-        <p class="eyebrow"><span class="dot yellow"></span> Portfolio</p>
-        <h2 class="display">
-          Des projets livrés,<br />
-          <em>du concept à la production.</em>
-        </h2>
-        <p class="section-sub">
-          Une sélection de réalisations récentes. Chaque projet est piloté avec la même exigence :
-          tenir les délais, maîtriser les coûts, garantir la qualité industrielle.
-        </p>
-      </header>
-
-      <div class="projects-grid">
-        <!-- Projet 01 -->
-        <article class="project-card reveal">
-          <div class="project-visual" style="background-image: url('assets/hero-industrial.jpg');">
-            <span class="project-tag">Ligne de production</span>
-          </div>
-          <div class="project-body">
-            <div class="project-meta">
-              <span>01</span>
-              <span>2024</span>
-            </div>
-            <h3>Ligne d'assemblage automatisée</h3>
-            <p>Pilotage complet de la conception à la mise en service d'une ligne d'assemblage
-               multi-postes. Coordination des corps d'état, planning, recette finale.</p>
-            <div class="project-stats">
-              <span><strong>18 mois</strong> de pilotage</span>
-              <span><strong>7 fournisseurs</strong> coordonnés</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Projet 02 -->
-        <article class="project-card reveal">
-          <div class="project-visual" style="background: linear-gradient(135deg, #2E3A52, #24242E);">
-            <span class="project-tag">Optimisation</span>
-            <span class="project-visual-fallback">VISUEL<br />À AJOUTER</span>
-          </div>
-          <div class="project-body">
-            <div class="project-meta">
-              <span>02</span>
-              <span>2023</span>
-            </div>
-            <h3>Optimisation d'un centre de tri</h3>
-            <p>Audit complet, refonte des flux et installation de convoyeurs additionnels.
-               Gain de cadence et réduction significative des temps d'arrêt.</p>
-            <div class="project-stats">
-              <span><strong>+22 %</strong> de cadence</span>
-              <span><strong>–35 %</strong> d'arrêts</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Projet 03 -->
-        <article class="project-card reveal">
-          <div class="project-visual" style="background: linear-gradient(135deg, #3A4A3E, #24242E);">
-            <span class="project-tag">Chantier neuf</span>
-            <span class="project-visual-fallback">VISUEL<br />À AJOUTER</span>
-          </div>
-          <div class="project-body">
-            <div class="project-meta">
-              <span>03</span>
-              <span>2023</span>
-            </div>
-            <h3>Mise en service d'une unité de production</h3>
-            <p>Supervision du chantier, essais à vide, montée en cadence progressive et
-               transfert aux équipes de production. Projet livré dans les délais contractuels.</p>
-            <div class="project-stats">
-              <span><strong>0 retard</strong> sur le planning</span>
-              <span><strong>12 semaines</strong> de ramp-up</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Projet 04 -->
-        <article class="project-card reveal">
-          <div class="project-visual" style="background: linear-gradient(135deg, #4A3A2E, #24242E);">
-            <span class="project-tag">Accompagnement</span>
-            <span class="project-visual-fallback">VISUEL<br />À AJOUTER</span>
-          </div>
-          <div class="project-body">
-            <div class="project-meta">
-              <span>04</span>
-              <span>2022</span>
-            </div>
-            <h3>Modernisation d'un atelier</h3>
-            <p>Intégration de nouveaux équipements dans un atelier existant, sans arrêt
-               de production. Formation des équipes et accompagnement au changement.</p>
-            <div class="project-stats">
-              <span><strong>Sans arrêt</strong> de production</span>
-              <span><strong>25 opérateurs</strong> formés</span>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="projects-more reveal">
-        <p>Ces projets ne représentent qu'une partie des missions menées. D'autres références
-           sont disponibles sur demande, selon les accords de confidentialité.</p>
-        <a href="#contact" class="btn btn-ghost">Demander d'autres références <span aria-hidden="true">→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── À propos ── -->
-  <section class="about section" id="apropos">
-    <div class="container about-grid">
-      <div class="about-portrait reveal">
-        <!--
-          Remplacer le placeholder par la vraie photo N&B :
-          <img src="assets/ghislain-portrait.jpg" alt="Ghislain Bulteau" />
-        -->
-        <div class="portrait-frame">
-          <img src="assets/ghislain.jpg" alt="Ghislain Bulteau" />
-        </div>
-        <figcaption>Ghislain Bulteau — Fondateur</figcaption>
-      </div>
-
-      <div class="about-text reveal">
-        <p class="eyebrow"><span class="dot green"></span> À propos</p>
-        <h2 class="display">
-          Un homme,<br />
-          <em>un métier, un engagement.</em>
-        </h2>
-
-        <p class="bio-lead">
-          Ghislain Bulteau pilote des projets industriels depuis plus de vingt ans. Formé au
-          Conservatoire National des Arts et Métiers, il a dirigé la conception et la mise en
-          service de lignes de production dans des secteurs aussi variés que le tri sélectif,
-          l'emballage et l'assemblage industriel.
-        </p>
-        <p>
-          En fondant <strong>Bulteau Consulting &amp; Support</strong>, il a fait le choix de
-          l'indépendance pour accompagner dirigeants et équipes opérationnelles avec la même
-          exigence : parler clair, rester sur le terrain, livrer ce qui a été promis.
-        </p>
-
-        <div class="about-facts">
-          <div class="fact">
-            <span class="fact-num">20+</span>
-            <span class="fact-label">années<br />d'expérience</span>
-          </div>
-          <div class="fact">
-            <span class="fact-num">40+</span>
-            <span class="fact-label">projets<br />livrés</span>
-          </div>
-          <div class="fact">
-            <span class="fact-num">CNAM</span>
-            <span class="fact-label">ingénieur<br />de formation</span>
-          </div>
-        </div>
-
-        <a href="https://www.linkedin.com/in/ghislain-bulteau/" target="_blank" rel="noopener" class="btn btn-ghost">
-          Profil LinkedIn <span aria-hidden="true">↗</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Contact ── -->
+  <!-- ── 3. CONTACT ── -->
   <section class="contact section" id="contact">
     <div class="container">
       <div class="contact-wrap reveal">
@@ -316,12 +262,10 @@
           Un projet à étudier ?<br />
           <em>Écrivez-nous.</em>
         </h2>
-
         <a href="mailto:contact@bulteau-consulting.fr" class="contact-mail">
           <span class="contact-mail-text">contact@bulteau-consulting.fr</span>
           <span class="contact-mail-arrow" aria-hidden="true">→</span>
         </a>
-
         <div class="contact-meta">
           <div class="contact-col">
             <span class="contact-label">Téléphone</span>
@@ -329,9 +273,7 @@
           </div>
           <div class="contact-col">
             <span class="contact-label">LinkedIn</span>
-            <a href="https://www.linkedin.com/in/ghislain-bulteau/" target="_blank" rel="noopener">
-              Ghislain Bulteau
-            </a>
+            <a href="https://www.linkedin.com/in/ghislain-bulteau/" target="_blank" rel="noopener">Ghislain Bulteau</a>
           </div>
           <div class="contact-col">
             <span class="contact-label">Réponse</span>
@@ -353,9 +295,8 @@
         </div>
       </div>
       <nav class="footer-nav" aria-label="Navigation pied de page">
-        <a href="#projets">Projets</a>
-        <a href="#video">Vidéo</a>
-        <a href="#apropos">À propos</a>
+        <a href="#hero">Accueil</a>
+        <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
       </nav>
       <p class="footer-legal">
