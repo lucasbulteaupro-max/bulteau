@@ -134,7 +134,7 @@ h2.display { font-size:clamp(2rem,4vw,3.6rem); }
 /* ── PORTFOLIO — slider 2 colonnes ── */
 .portfolio { background:var(--bg); padding-bottom:80px; }
 
-.slider-wrap { position:relative; width:100%; }
+.slider-wrap { position:relative; width:100%; border-radius:8px; overflow:hidden; box-shadow:0 32px 80px -20px rgba(0,0,0,0.6); }
 
 .slider {
   position:relative;
@@ -333,5 +333,6 @@ h2.display { font-size:clamp(2rem,4vw,3.6rem); }
   .reveal { opacity:1; transform:none; }
   .slide { transition:none; }
 }
-   
+  
+ 
  
