@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentions légales — Bulteau Consulting &amp; Support</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #24242E;
+      --bg-dark: #1A1A22;
+      --white:   #FFFFFF;
+      --muted:   rgba(255,255,255,0.6);
+      --border:  rgba(255,255,255,0.1);
+      --yellow:  #E5B64A;
+      --ease:    cubic-bezier(0.22,1,0.36,1);
+      --max:     860px;
+    }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Manrope',sans-serif; font-size:16px; line-height:1.7; background:var(--bg); color:var(--white); -webkit-font-smoothing:antialiased; }
+    a { color:var(--yellow); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+
+    /* HEADER */
+    .site-header { background:rgba(26,26,34,0.98); border-bottom:1px solid var(--border); padding:18px 48px; display:flex; align-items:center; justify-content:space-between; }
+    .brand { display:flex; align-items:center; gap:14px; text-decoration:none; color:inherit; }
+    .brand-logo { width:40px; height:40px; object-fit:contain; }
+    .brand-main { font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:0.95rem; color:var(--white); display:block; }
+    .brand-sub  { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); display:block; }
+    .back-link { font-size:0.85rem; color:var(--muted); display:inline-flex; align-items:center; gap:8px; transition:color 0.2s; }
+    .back-link:hover { color:var(--white); text-decoration:none; }
+
+    /* CONTENU */
+    .page-wrap { max-width:var(--max); margin:0 auto; padding:80px 48px 120px; }
+
+    .page-eyebrow {
+      font-size:0.68rem; font-weight:700; letter-spacing:0.25em; text-transform:uppercase;
+      color:rgba(255,255,255,0.38); margin-bottom:1.25rem;
+      display:inline-flex; align-items:center; gap:10px;
+    }
+    .page-eyebrow::before { content:""; display:inline-block; width:24px; height:1px; background:var(--yellow); }
+
+    .page-title {
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:500; font-size:clamp(2rem,4vw,3rem);
+      letter-spacing:-0.025em; line-height:1.05;
+      margin-bottom:48px;
+      padding-bottom:32px;
+      border-bottom:1px solid var(--border);
+    }
+
+    .ml-section { margin-bottom:52px; }
+    .ml-section h2 {
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-weight:500; font-size:1.1rem;
+      letter-spacing:-0.01em;
+      color:var(--yellow);
+      margin-bottom:16px;
+      padding-bottom:10px;
+      border-bottom:1px solid rgba(255,255,255,0.07);
+    }
+    .ml-section p { color:var(--muted); margin-bottom:10px; font-size:0.95rem; }
+    .ml-section p:last-child { margin-bottom:0; }
+    .ml-section strong { color:var(--white); font-weight:600; }
+
+    .placeholder {
+      background:rgba(229,182,74,0.1);
+      border:1px solid rgba(229,182,74,0.3);
+      color:var(--yellow);
+      padding:2px 8px;
+      border-radius:2px;
+      font-size:0.85em;
+      font-weight:700;
+      letter-spacing:0.05em;
+    }
+
+    .ml-last-update {
+      margin-top:64px;
+      padding-top:24px;
+      border-top:1px solid var(--border);
+      font-size:0.82rem;
+      color:rgba(255,255,255,0.3);
+    }
+
+    /* FOOTER */
+    .site-footer { background:var(--bg-dark); padding:40px 48px; border-top:1px solid var(--border); text-align:center; }
+    .footer-copy { font-size:0.78rem; color:rgba(255,255,255,0.3); }
+
+    @media (max-width:768px) {
+      .site-header { padding:14px 24px; }
+      .page-wrap { padding:48px 24px 80px; }
+      .site-footer { padding:32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="Bulteau Consulting" class="brand-logo" />
+      <span>
+        <span class="brand-main">Bulteau Consulting</span>
+        <span class="brand-sub">&amp; Support</span>
+      </span>
+    </a>
+    <a href="index.html" class="back-link">← Retour au site</a>
+  </header>
+
+  <main class="page-wrap">
+
+    <p class="page-eyebrow">Informations légales</p>
+    <h1 class="page-title">Mentions légales</h1>
+
+    <!-- 1. Éditeur -->
+    <div class="ml-section">
+      <h2>1. Éditeur du site</h2>
+      <p>
+        Le site <strong>bulteau-consulting.fr</strong> est édité par :
+      </p>
+      <p>
+        <strong>Dénomination sociale :</strong> <span class="placeholder">NOM_JURIDIQUE_ENTREPRISE</span><br />
+        <strong>Forme juridique :</strong> <span class="placeholder">FORME_JURIDIQUE (ex: SASU, SAS, Auto-entrepreneur...)</span><br />
+        <strong>Capital social :</strong> <span class="placeholder">MONTANT_CAPITAL</span><br />
+        <strong>SIRET :</strong> <span class="placeholder">NUMERO_SIRET</span><br />
+        <strong>RCS :</strong> <span class="placeholder">VILLE_RCS</span><br />
+        <strong>Adresse du siège social :</strong> <span class="placeholder">ADRESSE_COMPLETE</span><br />
+        <strong>Téléphone :</strong> <span class="placeholder">NUMERO_TELEPHONE</span><br />
+        <strong>Email :</strong> <a href="mailto:contact@bulteau-consulting.fr">contact@bulteau-consulting.fr</a>
+      </p>
+      <p>
+        <strong>Directeur de la publication :</strong> Ghislain Bulteau
+      </p>
+    </div>
+
+    <!-- 2. Hébergeur -->
+    <div class="ml-section">
+      <h2>2. Hébergement</h2>
+      <p>
+        Ce site est hébergé par :
+      </p>
+      <p>
+        <strong>Netlify, Inc.</strong><br />
+        44 Montgomery Street, Suite 300<br />
+        San Francisco, California 94104<br />
+        États-Unis<br />
+        <a href="https://www.netlify.com" target="_blank" rel="noopener">www.netlify.com</a>
+      </p>
+    </div>
+
+    <!-- 3. Propriété intellectuelle -->
+    <div class="ml-section">
+      <h2>3. Propriété intellectuelle</h2>
+      <p>
+        L'ensemble du contenu de ce site (textes, photographies, logos, graphismes) est la propriété exclusive
+        de <span class="placeholder">NOM_JURIDIQUE_ENTREPRISE</span> ou de ses partenaires, et est protégé
+        par les lois françaises et internationales relatives à la propriété intellectuelle.
+      </p>
+      <p>
+        Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des
+        éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans autorisation
+        écrite préalable.
+      </p>
+    </div>
+
+    <!-- 4. Données personnelles -->
+    <div class="ml-section">
+      <h2>4. Données personnelles</h2>
+      <p>
+        Ce site ne collecte pas de données personnelles via des formulaires ou des cookies de traçage.
+        Les seules données susceptibles d'être transmises sont celles que vous communiquez volontairement
+        par email à l'adresse <a href="mailto:contact@bulteau-consulting.fr">contact@bulteau-consulting.fr</a>.
+      </p>
+      <p>
+        Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique
+        et Libertés, vous disposez d'un droit d'accès, de rectification et de suppression des données
+        vous concernant. Pour exercer ce droit, contactez-nous à l'adresse ci-dessus.
+      </p>
+    </div>
+
+    <!-- 5. Cookies -->
+    <div class="ml-section">
+      <h2>5. Cookies</h2>
+      <p>
+        Ce site n'utilise pas de cookies à des fins publicitaires ou de traçage. Des cookies techniques
+        strictement nécessaires au bon fonctionnement du site peuvent être déposés par l'hébergeur Netlify.
+      </p>
+    </div>
+
+    <!-- 6. Limitation de responsabilité -->
+    <div class="ml-section">
+      <h2>6. Limitation de responsabilité</h2>
+      <p>
+        <span class="placeholder">NOM_JURIDIQUE_ENTREPRISE</span> s'efforce d'assurer l'exactitude et
+        la mise à jour des informations diffusées sur ce site. Toutefois, nous ne pouvons garantir
+        l'exactitude, la précision ou l'exhaustivité des informations mises à disposition.
+      </p>
+      <p>
+        En conséquence, nous déclinons toute responsabilité pour toute imprécision, inexactitude ou
+        omission portant sur des informations disponibles sur ce site.
+      </p>
+    </div>
+
+    <!-- 7. Liens hypertextes -->
+    <div class="ml-section">
+      <h2>7. Liens hypertextes</h2>
+      <p>
+        Ce site peut contenir des liens vers des sites tiers. Ces liens sont fournis à titre informatif.
+        <span class="placeholder">NOM_JURIDIQUE_ENTREPRISE</span> n'exerce aucun contrôle sur ces sites
+        et décline toute responsabilité quant à leur contenu.
+      </p>
+    </div>
+
+    <!-- 8. Droit applicable -->
+    <div class="ml-section">
+      <h2>8. Droit applicable</h2>
+      <p>
+        Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux
+        français seront seuls compétents.
+      </p>
+    </div>
+
+    <p class="ml-last-update">Dernière mise à jour : <span class="placeholder">DATE_MISE_A_JOUR</span></p>
+
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-copy">© <span id="year"></span> Bulteau Consulting &amp; Support — <a href="mentions-legales.html">Mentions légales</a></p>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
