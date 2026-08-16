@@ -285,12 +285,20 @@
     <!-- Fond : photos de chantiers + 1 slide vidéo (timelapse) -->
     <div class="hero-slides" id="heroSlides">
 
-      <!-- Slide 1 : photo (ex-slide 5) -->
-      <div class="hero-slide active" data-type="image">
+      <!-- Slide 1 : VIDÉO (avant/après) -->
+      <div class="hero-slide active" data-type="video">
+        <span class="hero-video-badge"><span class="rec-dot"></span> Avant / après</span>
+        <video class="hero-slide-video hero-video" muted playsinline preload="auto">
+          <source src="assets/avant-apres.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <!-- Slide 2 : photo -->
+      <div class="hero-slide" data-type="image">
         <div class="hero-slide-img" style="background-image:url('assets/usine3.jpg')"></div>
       </div>
 
-      <!-- Slide 2 : VIDÉO (timelapse) -->
+      <!-- Slide 3 : VIDÉO (timelapse) -->
       <!--
         Remplace src="assets/timelapse.mp4" par le vrai fichier vidéo.
         La vidéo se lance automatiquement UNIQUEMENT quand cette slide devient active,
@@ -303,22 +311,14 @@
         </video>
       </div>
 
-      <!-- Slide 3 : photo (ex-slide 4) -->
+      <!-- Slide 4 : photo -->
       <div class="hero-slide" data-type="image">
         <div class="hero-slide-img" style="background-image:url('assets/chantier2.jpg')"></div>
       </div>
 
-      <!-- Slide 4 : photo (ex-slide 2) -->
+      <!-- Slide 5 : photo -->
       <div class="hero-slide" data-type="image">
         <div class="hero-slide-img" style="background-image:url('assets/chantier1.jpg')"></div>
-      </div>
-
-      <!-- Slide 5 : VIDÉO (avant/après) -->
-      <div class="hero-slide" data-type="video">
-        <span class="hero-video-badge"><span class="rec-dot"></span> Avant / après</span>
-        <video class="hero-slide-video hero-video" muted playsinline preload="auto">
-          <source src="assets/avant-apres.mp4" type="video/mp4" />
-        </video>
       </div>
 
     </div>
