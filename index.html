@@ -298,7 +298,7 @@
       -->
       <div class="hero-slide" data-type="video">
         <span class="hero-video-badge"><span class="rec-dot"></span> Timelapse chantier</span>
-        <video class="hero-slide-video" id="heroVideo" muted playsinline preload="auto">
+        <video class="hero-slide-video hero-video" muted playsinline preload="auto">
           <source src="assets/timelapse.mp4" type="video/mp4" />
         </video>
       </div>
@@ -313,9 +313,12 @@
         <div class="hero-slide-img" style="background-image:url('assets/chantier1.jpg')"></div>
       </div>
 
-      <!-- Slide 5 : photo (ex-slide 1) -->
-      <div class="hero-slide" data-type="image">
-        <div class="hero-slide-img" style="background-image:url('assets/hero-industrial.jpg')"></div>
+      <!-- Slide 5 : VIDÉO (avant/après) -->
+      <div class="hero-slide" data-type="video">
+        <span class="hero-video-badge"><span class="rec-dot"></span> Avant / après</span>
+        <video class="hero-slide-video hero-video" muted playsinline preload="auto">
+          <source src="assets/avant-apres.mp4" type="video/mp4" />
+        </video>
       </div>
 
     </div>
@@ -553,23 +556,28 @@
       reveals.forEach(el => io.observe(el));
     } else { reveals.forEach(el=>el.classList.add('in')); }
 
-    // ── Hero slideshow avec gestion vidéo (durée dynamique) ──
+    // ── Hero slideshow avec gestion vidéo (durée dynamique, plusieurs vidéos possibles) ──
     const slides = document.querySelectorAll('.hero-slide');
     const fill   = document.getElementById('heroFill');
     const count  = document.getElementById('heroCount');
-    const heroVideo = document.getElementById('heroVideo');
     const total  = slides.length;
     const PHOTO_DURATION = 6000; // 6s pour les slides photo
     let cur = 0;
     let timer;
     let paused = false;
 
+    // Récupère la vidéo à l'intérieur d'une slide donnée (ou null si c'est une photo)
+    function getVideoOf(slide) {
+      return slide.querySelector('.hero-video');
+    }
+
     function goTo(i) {
-      // Met en pause la vidéo si on la quitte
-      if (slides[cur].dataset.type === 'video' && heroVideo) {
-        heroVideo.pause();
-        heroVideo.currentTime = 0;
-        heroVideo.onended = null; // détache l'écouteur de la slide qu'on quitte
+      // Met en pause la vidéo de la slide qu'on quitte, s'il y en a une
+      const leavingVideo = getVideoOf(slides[cur]);
+      if (leavingVideo) {
+        leavingVideo.pause();
+        leavingVideo.currentTime = 0;
+        leavingVideo.onended = null;
       }
 
       slides[cur].classList.remove('active');
@@ -584,24 +592,25 @@
 
     // Programme le passage à la slide suivante :
     // — pour une photo, après PHOTO_DURATION
-    // — pour la vidéo, seulement quand elle se termine (événement 'ended')
+    // — pour une vidéo, seulement quand elle se termine (événement 'ended')
     function scheduleNext() {
       clearTimeout(timer);
       if (paused) return;
 
       const activeSlide = slides[cur];
+      const video = getVideoOf(activeSlide);
 
-      if (activeSlide.dataset.type === 'video' && heroVideo) {
-        heroVideo.currentTime = 0;
-        heroVideo.onended = () => goTo(cur + 1);
+      if (video) {
+        video.currentTime = 0;
+        video.onended = () => goTo(cur + 1);
 
-        const playPromise = heroVideo.play();
+        const playPromise = video.play();
         if (playPromise) {
           playPromise.catch(() => {
             // Autoplay bloqué par le navigateur : on passe quand même après
             // la durée réelle de la vidéo si elle est connue, sinon un délai de secours.
-            const fallback = (heroVideo.duration && isFinite(heroVideo.duration))
-              ? heroVideo.duration * 1000
+            const fallback = (video.duration && isFinite(video.duration))
+              ? video.duration * 1000
               : PHOTO_DURATION;
             timer = setTimeout(() => goTo(cur + 1), fallback);
           });
@@ -618,14 +627,15 @@
     if (fill) fill.style.width = (1/total*100) + '%';
 
     document.addEventListener('visibilitychange', () => {
+      const activeVideo = getVideoOf(slides[cur]);
       if (document.hidden) {
         paused = true;
         clearTimeout(timer);
-        if (heroVideo) heroVideo.pause();
+        if (activeVideo) activeVideo.pause();
       } else {
         paused = false;
-        if (slides[cur].dataset.type === 'video' && heroVideo) {
-          heroVideo.play().catch(()=>{});
+        if (activeVideo) {
+          activeVideo.play().catch(()=>{});
         } else {
           scheduleNext();
         }
