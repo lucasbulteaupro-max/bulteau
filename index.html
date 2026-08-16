@@ -285,17 +285,12 @@
     <!-- Fond : photos de chantiers + 1 slide vidéo (timelapse) -->
     <div class="hero-slides" id="heroSlides">
 
-      <!-- Slide 1 : photo -->
+      <!-- Slide 1 : photo (ex-slide 5) -->
       <div class="hero-slide active" data-type="image">
-        <div class="hero-slide-img" style="background-image:url('assets/hero-industrial.jpg')"></div>
+        <div class="hero-slide-img" style="background-image:url('assets/usine3.jpg')"></div>
       </div>
 
-      <!-- Slide 2 : photo -->
-      <div class="hero-slide" data-type="image">
-        <div class="hero-slide-img" style="background-image:url('assets/chantier1.jpg')"></div>
-      </div>
-
-      <!-- Slide 3 : VIDÉO (timelapse) -->
+      <!-- Slide 2 : VIDÉO (timelapse) -->
       <!--
         Remplace src="assets/timelapse.mp4" par le vrai fichier vidéo.
         La vidéo se lance automatiquement UNIQUEMENT quand cette slide devient active,
@@ -303,19 +298,24 @@
       -->
       <div class="hero-slide" data-type="video">
         <span class="hero-video-badge"><span class="rec-dot"></span> Timelapse chantier</span>
-        <video class="hero-slide-video" id="heroVideo" muted loop playsinline preload="none">
+        <video class="hero-slide-video" id="heroVideo" muted playsinline preload="auto">
           <source src="assets/timelapse.mp4" type="video/mp4" />
         </video>
       </div>
 
-      <!-- Slide 4 : photo -->
+      <!-- Slide 3 : photo (ex-slide 4) -->
       <div class="hero-slide" data-type="image">
         <div class="hero-slide-img" style="background-image:url('assets/chantier2.jpg')"></div>
       </div>
 
-      <!-- Slide 5 : photo -->
+      <!-- Slide 4 : photo (ex-slide 2) -->
       <div class="hero-slide" data-type="image">
-        <div class="hero-slide-img" style="background-image:url('assets/usine3.jpg')"></div>
+        <div class="hero-slide-img" style="background-image:url('assets/chantier1.jpg')"></div>
+      </div>
+
+      <!-- Slide 5 : photo (ex-slide 1) -->
+      <div class="hero-slide" data-type="image">
+        <div class="hero-slide-img" style="background-image:url('assets/hero-industrial.jpg')"></div>
       </div>
 
     </div>
@@ -593,8 +593,19 @@
 
       if (activeSlide.dataset.type === 'video' && heroVideo) {
         heroVideo.currentTime = 0;
-        heroVideo.play().catch(() => {});
         heroVideo.onended = () => goTo(cur + 1);
+
+        const playPromise = heroVideo.play();
+        if (playPromise) {
+          playPromise.catch(() => {
+            // Autoplay bloqué par le navigateur : on passe quand même après
+            // la durée réelle de la vidéo si elle est connue, sinon un délai de secours.
+            const fallback = (heroVideo.duration && isFinite(heroVideo.duration))
+              ? heroVideo.duration * 1000
+              : PHOTO_DURATION;
+            timer = setTimeout(() => goTo(cur + 1), fallback);
+          });
+        }
       } else {
         timer = setTimeout(() => goTo(cur + 1), PHOTO_DURATION);
       }
