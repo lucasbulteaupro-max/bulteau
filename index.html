@@ -553,20 +553,23 @@
       reveals.forEach(el => io.observe(el));
     } else { reveals.forEach(el=>el.classList.add('in')); }
 
-    // ── Hero slideshow avec gestion vidéo ──
+    // ── Hero slideshow avec gestion vidéo (durée dynamique) ──
     const slides = document.querySelectorAll('.hero-slide');
     const fill   = document.getElementById('heroFill');
     const count  = document.getElementById('heroCount');
     const heroVideo = document.getElementById('heroVideo');
     const total  = slides.length;
+    const PHOTO_DURATION = 6000; // 6s pour les slides photo
     let cur = 0;
     let timer;
+    let paused = false;
 
     function goTo(i) {
       // Met en pause la vidéo si on la quitte
       if (slides[cur].dataset.type === 'video' && heroVideo) {
         heroVideo.pause();
         heroVideo.currentTime = 0;
+        heroVideo.onended = null; // détache l'écouteur de la slide qu'on quitte
       }
 
       slides[cur].classList.remove('active');
@@ -576,27 +579,45 @@
       if (fill)  fill.style.width = ((cur+1)/total*100) + '%';
       if (count) count.textContent = String(cur+1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
 
-      // Lance la vidéo automatiquement si la nouvelle slide active en contient une
-      if (slides[cur].dataset.type === 'video' && heroVideo) {
-        heroVideo.play().catch(() => {}); // catch : certains navigateurs bloquent sans interaction, ignoré silencieusement
+      scheduleNext();
+    }
+
+    // Programme le passage à la slide suivante :
+    // — pour une photo, après PHOTO_DURATION
+    // — pour la vidéo, seulement quand elle se termine (événement 'ended')
+    function scheduleNext() {
+      clearTimeout(timer);
+      if (paused) return;
+
+      const activeSlide = slides[cur];
+
+      if (activeSlide.dataset.type === 'video' && heroVideo) {
+        heroVideo.currentTime = 0;
+        heroVideo.play().catch(() => {});
+        heroVideo.onended = () => goTo(cur + 1);
+      } else {
+        timer = setTimeout(() => goTo(cur + 1), PHOTO_DURATION);
       }
     }
 
-    document.getElementById('prevHero').addEventListener('click', () => { goTo(cur-1); restart(); });
-    document.getElementById('nextHero').addEventListener('click', () => { goTo(cur+1); restart(); });
+    document.getElementById('prevHero').addEventListener('click', () => goTo(cur - 1));
+    document.getElementById('nextHero').addEventListener('click', () => goTo(cur + 1));
 
-    const start   = () => { timer = setInterval(() => goTo(cur+1), 6000); };
-    const restart = () => { clearInterval(timer); start(); };
-    start();
+    scheduleNext();
     if (fill) fill.style.width = (1/total*100) + '%';
 
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
-        clearInterval(timer);
+        paused = true;
+        clearTimeout(timer);
         if (heroVideo) heroVideo.pause();
       } else {
-        start();
-        if (slides[cur].dataset.type === 'video' && heroVideo) heroVideo.play().catch(()=>{});
+        paused = false;
+        if (slides[cur].dataset.type === 'video' && heroVideo) {
+          heroVideo.play().catch(()=>{});
+        } else {
+          scheduleNext();
+        }
       }
     });
   </script>
